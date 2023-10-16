@@ -3,9 +3,10 @@ from learning_agent import BlackjackAgent, create_grids, create_plots
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+from gymnasium.utils.play import play
 
 
-env = gym.make("Blackjack-v1", sab=True)
+env = gym.make("Blackjack-v1", sab=True, render_mode="rgb_array")
 
 # hyperparameters
 learning_rate = 0.01
@@ -81,3 +82,8 @@ plt.show()
 value_grid, policy_grid = create_grids(agent, usable_ace=False)
 fig2 = create_plots(value_grid, policy_grid, title="Without usable ace")
 plt.show()
+
+# play
+play(env, keys_to_action={"a": 1, "z": 0})
+
+env.close()
